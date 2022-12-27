@@ -1,0 +1,16 @@
+1. CREATE TABLE `wynajem`.`pokoje` ( `id` INT NOT NULL AUTO_INCREMENT , `nazwa` TEXT NOT NULL , `cena` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+2. ALTER TABLE pokoje ADD PRIMARY KEY(id);
+
+3. -INSERT INTO `pokoje`(`id`, `nazwa`, `cena`) VALUES ('1','jednoosobowy','100');
+   -INSERT INTO `pokoje`(`id`, `nazwa`, `cena`) VALUES ('2','dwuosobowy','170');
+   -INSERT INTO `pokoje`(`id`, `nazwa`, `cena`) VALUES ('3','trzyosobowy','210');
+4. ALTER TABLE rezerwacje ADD FOREIGN KEY(id_pok) REFERENCES pokoje(id);
+
+5. SELECT `id_pok`, SUM(`liczba_dn`) FROM `rezerwacje` GROUP BY `id_pok`;
+
+6. SELECT SUM(`liczba_dn`) FROM rezerwacje WHERE `sezon`='lato';
+
+7. UPDATE `pokoje` SET cena = cena * 1.15;
+
+8. CREATE USER 'najemca'@'%' IDENTIFIED VIA mysql_native_password USING '***';GRANT USAGE ON *.* TO 'najemca'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
